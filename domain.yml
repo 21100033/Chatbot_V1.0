@@ -1,3 +1,13 @@
+entities:
+  - location
+  - facility_type
+slots:
+  location:
+    type: text
+  facility_type:
+    type: text
+actions:
+  - action_find_facility
 intents:
   - greet
   - goodbye
@@ -6,6 +16,10 @@ intents:
   - mood_great
   - mood_unhappy
   - bot_challenge
+  - provide_location
+  - facility_search
+  - thankyou
+  - acknowledge
 
 responses:
   utter_greet:
@@ -26,6 +40,12 @@ responses:
 
   utter_iamabot:
     - text: "I am a bot, powered by Rasa."
+
+  utter_welcome_response:
+    - text: "You're very welcome :)"
+
+  utter_ask_location:
+    - text: "Could you please tell me your location?"
 
 session_config:
   session_expiration_time: 60
