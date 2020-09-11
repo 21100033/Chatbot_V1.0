@@ -1,4 +1,7 @@
 No changes made to the template so far.
 Start from:
 
-1.0: Changed greeting response in domain.yml to test
+1.0: Changed greeting response in domain.yml to test -Zainab
+1.1: Added Acknowlegdement, Welcome Reponse, Facility search and Provide location intent -Zainab
+1.2: Added Stories for a simple greeting and facility search conversation -Zainab
+1.3: tested actions.py to check server connection -Zainab
