@@ -105,3 +105,8 @@
 - Understood
 - Right
 - sounds good
+- i get it
+- yeah, okay
+- yeah, i got it
+
+## intent: emergency_services_search

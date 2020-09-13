@@ -76,3 +76,5 @@
   - action_find_facility
 * acknowledge
   - utter_goodbye
+
+## greet + emergency services + location + say goodbye path 1
