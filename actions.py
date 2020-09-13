@@ -63,3 +63,19 @@ class ActionFindFacility(Action):
         dispatcher.utter_message(text = final_resp)
         
         return []
+
+class ActionFindService(Action):
+
+    def name(self) -> Text:
+        return "action_find_service"
+
+    def run(self, dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        # since corona related also adding testing facilities.
+        final_resp = "Pakistan COVID-19 Helpline: 1166\nEdhi Ambulance: 115\nRescue: 1122\nAman TeleHealth: 111-11-9123\nTesting Facilities list: http://covid.gov.pk/facilities/10%20June%202020%20Current%20Laboratory%20Testing%20Capacity%20for%20COVID.pdf"
+
+        dispatcher.utter_message(text = final_resp)
+        
+        return []
