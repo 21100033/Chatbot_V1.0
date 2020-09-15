@@ -110,3 +110,53 @@
 - yeah, i got it
 
 ## intent: emergency_services_search
+- i have an emergency
+- there is an emergency
+- emergency
+- i need help
+- help me
+- can you please help me
+- i am in trouble
+
+## intent: what_is_covid
+- what is corona
+- what is corona virus
+- what is covid
+- can you brief me about corona
+- can you brief me about covid
+- explain corona
+
+## intent: corona_spread
+- How does corona virus spread
+- How does covid spread
+- Does corona move
+- Does corona spread by rain
+- can someone spread the virus without being sick
+
+## intent: corona_spread_air
+- Is coronavirus airborne
+- How long does corona virus stay in a place where a corona victim sneezed
+- Can wind move corona from one place to another
+
+## intent: corona_in_people
+- Is coronavirus only dangerous for people below 20 and above 65 years of age
+- Can a newborn catch corona
+
+## intent: corona_symptoms
+- Is severe body pain one of corona’s symptoms
+- can we have see no symptoms and still have corona
+- what are the symptoms of corona
+- What symptoms should I be on the lookout for
+- Is it dangerous
+- How bad is the virus
+- Can corona kill me
+- Can i die from the virus
+
+## intent: corona_test
+- What are the chances of false positive of corona test
+- what are the chances of false negative of corona test
+
+## intent: corona_quarantine
+- if someone is infected and quarantined at home, is it dangerous for other members
+- can someone who has been quarantined for COVID-19 spread the illness to others
+- is someone after quarantined still contagious
