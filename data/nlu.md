@@ -27,9 +27,16 @@
 - no
 - never
 - I don't think so
-- don't like that
+- not at all
 - no way
 - not really
+- nope
+- no, thank you
+- no, thanks
+- no, i'm good
+- nah
+- no, i'm done
+- no. i'm done
 
 ## intent:mood_great
 
@@ -109,54 +116,198 @@
 - yeah, okay
 - yeah, i got it
 
-## intent: emergency_services_search
-- i have an emergency
-- there is an emergency
-- emergency
-- i need help
-- help me
-- can you please help me
-- i am in trouble
+## intent: emergency_service_search
+- i need [covid-19 emergency service](emergency_service_type) [number](contact_info)
+- it's an emergency, i need to call the [covid-19 helpline](emergency_service_type)
+- i need to call an [ambulance](emergency_service_type)
+- [ambulance](emergency_service_type) [number](contact_info)
+- i need to contact [emergency covid-19 services](emergency_service_type)
+- [corona emergency](emergency_service_type) [number](contact_info)
+- i need to call [corona emergency services](emergency_service_type)
+
 
 ## intent: what_is_covid
-- what is corona
-- what is corona virus
-- what is covid
-- can you brief me about corona
-- can you brief me about covid
-- explain corona
+- [what is](faq_type) [corona](subject)
+- [what is](faq_type) [corona virus](subject)
+- [what is](faq_type) covid
+- can you [brief me about](faq_type) [corona](subject)
+- can you [brief me about](faq_type) [covid](subject)
+- can you [tell me about](faq_type) [covid](subject)
+- [explain](faq_type) [corona](subject)
 
 ## intent: corona_spread
-- How does corona virus spread
-- How does covid spread
-- Does corona move
-- Does corona spread by rain
-- can someone spread the virus without being sick
-
-## intent: corona_spread_air
-- Is coronavirus airborne
-- How long does corona virus stay in a place where a corona victim sneezed
-- Can wind move corona from one place to another
+- [How does](faq_type) [corona virus](subject) [spread](verb)
+- [How does](faq_type) [covid spread](subject)
+- Does [corona](subject) [move](verb)
+- Does [corona](subject) [spread](verb) by [rain]{"entity": "weather", "role":"cause"}
+- [can someone](faq_type) [spread](verb) the [virus](subject) [without being sick](no_symptoms)
+- Is [coronavirus](subject) [airborne](spread)
+- [How long](faq_type) does [corona virus](subject) [stay](verb) in a place where a [corona victim](patient) [sneezed](symptom)
+- Can [wind]{"entity":"weather", "role":"cause"} [move](verb) [corona](subject) from one place to another
 
 ## intent: corona_in_people
-- Is coronavirus only dangerous for people below 20 and above 65 years of age
-- Can a newborn catch corona
+- Is [coronavirus](subject) only [dangerous](bad_intent) for [people](target) [below 20]{"entity": "age_text", "value": "below 20"} and [above 65 years]{"entity":"age_text", "value": "above 65 years"} of age
+- Can a [newborn](target) [catch](verb) [corona](subject)
+- 
 
 ## intent: corona_symptoms
-- Is severe body pain one of corona’s symptoms
-- can we have see no symptoms and still have corona
-- what are the symptoms of corona
-- What symptoms should I be on the lookout for
-- Is it dangerous
-- How bad is the virus
-- Can corona kill me
-- Can i die from the virus
+- Is severe [body pain](symptom) one of [corona’s symptoms](subject)
+- can we have [no symptoms](no_symptoms) and still [have corona](patient_condition)
+- what are the [symptoms of corona](subject)
+- What [symptoms](subject) should I be [on the lookout](verb) for
+- [Is it](faq_type) [dangerous](bad_intent)
+- [How](faq_type) [bad](bad_intent) is the [virus](subject)
+- Can [corona](subject) [kill](verb) [me](target)
+- [Can i](faq_type) [die](verb) from the [virus](subject)
 
 ## intent: corona_test
-- What are the chances of false positive of corona test
-- what are the chances of false negative of corona test
+- [What are](faq_type) the [chances of](percentage_search) [false positive](result) of [corona test](subject)
+- [what are](faq_type) the [chances of](percentage_search) [false negative](result) of [corona test](subject)
 
 ## intent: corona_quarantine
-- if someone is infected and quarantined at home, is it dangerous for other members
-- can someone who has been quarantined for COVID-19 spread the illness to others
-- is someone after quarantined still contagious
+- [if](faq_type) someone is [infected](patient_condition) and [quarantined](patient condition) at home, is it [dangerous](bad_intent) for [other members](target)
+- [can someone](faq_type) who has been [quarantined](patient_condition) for [COVID-19](subject) [spread](verb) the illness to [others](target)
+- [is someone](faq_type) [after quarantined](patient_condition) still [contagious](can_spread)
+
+## lookup: verb
+- spread
+- stay
+- move
+- infect
+- injure
+- kill
+- destroy
+- hurt
+- remain
+- cause 
+
+## lookup: patient_condition
+- quarantined
+- in quarantine
+- infected
+- on life support
+- on ventilator
+- recovered
+- recovered patient
+- recovered covid-19 patient
+- have corona
+
+## lookup: target
+- others
+- another person
+- me
+- family members
+- babies
+- children
+- pregant women
+- newborn
+- toddlers
+- old people
+- other people
+- animals 
+
+## lookup: percentage_search
+- chances of
+- percentage of
+- percentage cases of
+- chance of 
+- odds of
+- likelihood
+- percent of 
+- lookup percentage of
+- search for percentage
+- search chances of
+<!-- - %age
+- % -->
+
+## lookup: patient
+- virus victim
+- covid-19 patient
+- corona victim
+- corona patient
+- sick person
+- sick child
+- sick man
+- sick woman
+- victim
+- infected person
+- infected people
+- someone infected by corona virus
+- someone with covid-19 virus
+- someone infected by corona virus
+
+## lookup: can_spread
+- contagious
+- infectious
+- spreading
+- is able to spread
+- can infect
+- can spread virus
+- can cause corona virus
+
+## lookup: bad_intent
+- dangerous
+- is dangerous
+- is injurious
+- fatal
+- painful
+- severely painful
+- very dangerous
+- very harmful
+- harmful
+
+## lookup: weather
+- rain
+- rainy
+- wind
+- sunny
+- cloudy
+- windy
+- cold weather
+- winters
+- summers
+- fall
+- spring
+- spring time
+
+## lookup: no_symptoms
+- showing no signs of covid-19 virus
+- asymptomatic
+- no visible symptoms
+- no fever
+- no cough
+- not sick
+- not ill
+- no symptoms
+- without being sick
+- without showing symptoms
+- without fever
+- without cough
+
+## lookup: symptoms
+- cough 
+- fever
+- sneezing
+- body pain
+- pain
+
+## lookup: age_text
+ - 65 years old
+ - 50 year old
+ - 5 years old
+ - age is 35 years
+ - 45 years of age
+ - 12 months old
+ - 5 month old
+ - i'm 23
+ - i'm 24 
+ - i'm 25 years old
+
+
+
+
+
+
+
+
+ 
