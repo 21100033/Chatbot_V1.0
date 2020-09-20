@@ -13,7 +13,7 @@ from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 import requests
 
-key = "enter-your-api-key" # enter the API shared in group
+key = "" # enter the API shared in group
 
 class ActionFindFacility(Action):
 
@@ -77,5 +77,19 @@ class ActionFindService(Action):
         final_resp = "Pakistan COVID-19 Helpline: 1166\nEdhi Ambulance: 115\nRescue: 1122\nAman TeleHealth: 111-11-9123\nTesting Facilities list: http://covid.gov.pk/facilities/10%20June%202020%20Current%20Laboratory%20Testing%20Capacity%20for%20COVID.pdf"
 
         dispatcher.utter_message(text = final_resp)
+        
+        return []
+
+class ActionFAQ(Action):
+
+    def name(self) -> Text:
+        return "action_ans_faq"
+
+    def run(self, dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        # ent = latest_message['entities'][0]['value']
+        dispatcher.utter_message(text = "kill me please")
         
         return []

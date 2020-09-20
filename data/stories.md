@@ -35,46 +35,58 @@
 - bot_challenge
   - utter_iamabot --> -->
 
-## greet + facility search + say goodbye path 1
-
+## greet + facility search path 1
 * greet
   - utter_greet
 * facility_search{"facility_type": "hospital", "location": "Islamabad"}
   - action_find_facility
-* thankyou
-  - utter_welcome_response
-  - utter_goodbye
 
-## greet + facility search + say goodbye path 2
 
-* greet
-  - utter_greet
-* facility_search{"facility_type": "hospital", "location": "Islamabad"}
-  - action_find_facility
-* acknowledge
-  - utter_goodbye
 
-## greet + facility search + location + say goodbye path 1
-
+## greet + facility search + location path 1
 * greet
   - utter_greet
 * facility_search{"facility_type": "hospital"}
   - utter_ask_location
 * provide_location{"location": "Islamabad"}
   - action_find_facility
+
+
+
+## greet + emergency services
+* emergency_service_search
+  - action_find_service
+
+## what_is_covid
+* what_is_covid
+  - action_ans_faq
+## corona_spread
+  - action_ans_faq
+## corona_in_people
+  - action_ans_faq
+## corona_symptoms
+  - action_ans_faq
+## corona_test
+  - action_ans_faq
+## corona_quarantine
+  - action_ans_faq
+
+## goodbye path 1
+* acknowledge 
+  - utter_anything_else
+* deny
+  - utter_ack
+  - utter_goodbye
+
+## goodbye path 2
 * thankyou
   - utter_welcome_response
+  - utter_anything_else
+* deny
+  - utter_ack
   - utter_goodbye
 
-## greet + facility search + location + say goodbye path 2
-
-* greet
-  - utter_greet
-* facility_search{"facility_type": "hospital"}
-  - utter_ask_location
-* provide_location{"location": "Islamabad"}
-  - action_find_facility
-* acknowledge
+## goodbye path 3
+* goodbye
   - utter_goodbye
 
-## greet + emergency services + location + say goodbye path 1

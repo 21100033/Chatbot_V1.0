@@ -1,13 +1,78 @@
 entities:
   - location
   - facility_type
+  - emergency_service_type
+  - faq_type
+  - subject
+  - verb
+  - weather
+  - no_symptoms
+  - symptoms
+  - bad_intent
+  - target
+  - age_text
+  - percentage_search
+  - result
+  - can_spread
+  - patient_condition
+  - patient
 slots:
   location:
     type: text
   facility_type:
     type: text
+  emergency_service_type:
+    type: text
+  faq_type:
+    type: text
+  subject:
+    type: text
+  verb:
+    type: text
+  weather:
+    type: text
+  no_symptoms:
+    type: text
+  symptoms:
+    type: text
+  bad_intent:
+    type: text
+  target:
+    type: text
+  age_text:
+    type: text
+  age:
+    type: text 
+    # for now, we need to make this a custom slot
+  percentage_search:
+    type: text
+  percentage:
+    type: text
+    # for now, we need to make this a custom slot
+  result:
+    type: categorical
+    values:
+      - positive
+      - negative
+      - confirmed
+      - unconfirmed
+      - inconclusive
+      - false positive
+      - false negative
+  can_spread:
+    type: text
+  patient_condition:
+    type: text
+  patient:
+    type: text
 actions:
   - action_find_facility
+  - action_ans_faq
+  - action_find_service
+  - utter_default
+  - utter_anything_else
+  - utter_ack
+
 intents:
   - greet
   - goodbye
@@ -20,6 +85,13 @@ intents:
   - facility_search
   - thankyou
   - acknowledge
+  - emergency_service_search 
+  - what_is_covid
+  - corona_spread 
+  - corona_in_people
+  - corona_symptoms
+  - corona_test
+  - corona_quarantine
 
 responses:
   utter_greet:
@@ -46,6 +118,15 @@ responses:
 
   utter_ask_location:
     - text: "Could you please tell me your location?"
+  
+  utter_default:
+    - text: "I do not understand"
+  
+  utter_anything_else:
+    - text: "Can i help with you with anything else"
+  
+  utter_ack:
+    - text: "Alright then"
 
 session_config:
   session_expiration_time: 60
