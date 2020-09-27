@@ -12,8 +12,18 @@ from typing import Any, Text, Dict, List
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 import requests
+from api_key import key, projectId
+import firebase_admin
+from firebase_admin import credentials
+from firebase_admin import firestore
 
-key = "" # enter the API shared in group
+cred = credentials.Certificate("./serviceAccountKey.json")
+
+firebase_admin.initialize_app(cred, {
+  'projectId': projectId,
+})
+
+db = firestore.client()
 
 class ActionFindFacility(Action):
 
@@ -89,7 +99,25 @@ class ActionFAQ(Action):
         tracker: Tracker,
         domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
-        # ent = latest_message['entities'][0]['value']
-        dispatcher.utter_message(text = "kill me please")
+        latest_message = tracker.latest_message
+        entities = []
+
+        for i, x in enumerate(latest_message['entities']):
+            ent = latest_message['entities'][i]['value']
+            entities.append(ent)
+            # print entities to check how they match with FAQs 
+            print(ent)
+
+
+        # send api request
+        docs = db.collection(u'FAQs').where(u'disaster', u'==', u'covid-19').where(u'keyword', u'array_contains_any', entities)
+
+        doc = docs.get()
+
+        for d in doc:
+            new_doc = d.to_dict()
+            # if new_doc['keyword'][0] == "what is" and new_doc["keyword"][1] == 'covid':
+            # print(new_doc['answer'])
+            dispatcher.utter_message(text = new_doc['answer'])
         
         return []
