@@ -1,77 +1,4 @@
-entities:
-  - location
-  - facility_type
-  - emergency_service_type
-  - faq_type
-  - subject
-  - verb
-  - weather
-  - no_symptoms
-  - symptoms
-  - bad_intent
-  - target
-  - age_text
-  - percentage_search
-  - result
-  - can_spread
-  - patient_condition
-  - patient
-slots:
-  location:
-    type: text
-  facility_type:
-    type: text
-  emergency_service_type:
-    type: text
-  faq_type:
-    type: text
-  subject:
-    type: text
-  verb:
-    type: text
-  weather:
-    type: text
-  no_symptoms:
-    type: text
-  symptoms:
-    type: text
-  bad_intent:
-    type: text
-  target:
-    type: text
-  age_text:
-    type: text
-  age:
-    type: text 
-    # for now, we need to make this a custom slot
-  percentage_search:
-    type: text
-  percentage:
-    type: text
-    # for now, we need to make this a custom slot
-  result:
-    type: categorical
-    values:
-      - positive
-      - negative
-      - confirmed
-      - unconfirmed
-      - inconclusive
-      - false positive
-      - false negative
-  can_spread:
-    type: text
-  patient_condition:
-    type: text
-  patient:
-    type: text
-actions:
-  - action_find_facility
-  - action_ans_faq
-  - action_find_service
-  - utter_default
-  - utter_anything_else
-  - utter_ack
+version: "2.0"
 
 intents:
   - greet
@@ -85,13 +12,48 @@ intents:
   - facility_search
   - thankyou
   - acknowledge
-  - emergency_service_search 
-  - what_is_covid
-  - corona_spread 
-  - corona_in_people
-  - corona_symptoms
-  - corona_test
-  - corona_quarantine
+  - emergency_service_search
+  - inform_condition
+  - provide_disease
+  - ask_prevention
+  - provide_test
+  - ask_accuracy
+  - ask_test
+  - ask_medicine
+  - ask_cases
+  - inform_symptoms_pandemic
+  - no_symptoms_pandemic
+  - ask_cause
+  - ask_spread
+  - give_cause
+
+entities:
+  - location
+  - facility_type
+  - emergency_service_type
+  - symptom
+  - cause
+  - patient_condition_disease
+  - disaster_type
+
+slots:
+  location:
+    type: text
+  facility_type:
+    type: text
+  emergency_service_type:
+    type: text
+  disaster_type:
+    type: text
+  test:
+    type: text
+  symptom:
+    type: text
+  patient_condition:
+    type: text
+  cause:
+    type: text
+    influence_conversation: True
 
 responses:
   utter_greet:
@@ -118,15 +80,55 @@ responses:
 
   utter_ask_location:
     - text: "Could you please tell me your location?"
-  
+
   utter_default:
-    - text: "I do not understand"
-  
+    - text: "I do not understand, could you rephrase?"
+
   utter_anything_else:
     - text: "Can i help with you with anything else"
-  
+
   utter_ack:
     - text: "Alright then"
+
+  utter_consult_doc:
+    - text: "I recommend that you consult with a doctor"
+
+  utter_ask_symptoms:
+    - text: "What are your symptoms?"
+
+  utter_ask_casesfor:
+    - text: "What are your symptoms?"
+
+  utter_ask_medsfor:
+    - text: "Could you tell me what you need medicines for?"
+
+  utter_ask_testfor:
+    - text: "What do you need to get tested for?"
+
+  utter_ask_preventfor:
+    - text: "What do you need prevention techniques for?"
+
+actions:
+  - action_find_facility
+  # - action_ans_faq
+  - action_find_service
+  - action_checksymptom
+  - action_findcases
+  - action_findmeds
+  - action_findtests
+  - action_getacc
+  - action_prevent
+  - action_confirm_cause
+  - utter_default
+  - utter_anything_else
+  - utter_ack
+  - utter_consult_doc
+  - utter_ask_symptoms
+  - utter_ask_casesfor
+  - utter_ask_medsfor
+  - utter_ask_testfor
+  - utter_ask_preventfor
+  - action_ask_cause
 
 session_config:
   session_expiration_time: 60

@@ -1,0 +1,312 @@
+version: "2.0"
+
+nlu:
+
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - good morning
+    - good evening
+    - hey there
+
+
+- intent: goodbye
+  examples: |
+    - bye
+    - goodbye
+    - see you around
+    - see you later
+
+- intent: affirm
+  examples: |
+    - yes
+    - indeed
+    - of course
+    - that sounds good
+    - correct
+
+
+- intent: deny
+  examples: |
+    - no
+    - never
+    - I don't think so
+    - not at all
+    - no way
+    - not really
+    - nope
+    - no, thank you
+    - no, thanks
+    - no, i'm good
+    - nah
+    - no, i'm done
+    - no. i'm done
+
+- intent: mood_great
+  examples: |
+    - perfect
+    - very good
+    - great
+    - amazing
+    - wonderful
+    - I am feeling very good
+    - I am great
+    - I'm good
+
+
+- intent: mood_unhappy
+  examples: |
+    - sad
+    - very sad
+    - unhappy
+    - bad
+    - very bad
+    - awful
+    - terrible
+    - not very good
+    - extremely sad
+    - so sad
+
+
+- intent: bot_challenge
+  examples: |
+    - are you a bot?
+    - are you a human?
+    - am I talking to a bot?
+    - am I talking to a human?
+
+
+
+- intent: provide_location
+  examples: |
+    - [Islamabad](location)
+    - [Lahore](location)
+    - [Karachi](location)
+    - [Rawalpindi](location)
+    - [Sialkot](location)
+    - [Quetta](location)
+    - i'm in [Islamabad](location)
+    - i live in [Karachi](location)
+    - i'm in the province of [Punjab](location)
+    - [Punjab](location)
+    - [KPK](location)
+    - [Sindh](location)
+    - [Balochistan](location)
+    - [Gilgit Baltistan](location)
+
+
+- intent: provide_disease
+  examples: |
+    - [covid-19 virus](disaster_type)
+    - [corona](disaster_type)
+    - [coronavirus](disaster_type)
+    - [corona virus](disaster_type)
+    - [covid-19](disaster_type)
+    - [covid](disaster_type)
+    - [covid19](disaster_type)
+
+- intent: facility_search
+  examples: |
+    - i need a [hospital](facility_type)
+    - i need a [hospital](facility_type) in [Islamabad](location)
+    - [hospital](facility_type)
+    - address of nearest [health center](facility_type)
+    - can you tell me where the nearest [covid-19 testing center](facility_type) is?
+    - [corona testing](facility_type) in [Islamabad](location)
+    - [hospital](facility_type) in [Rawalpindi](location)
+    - i need to locate a [burn center](facility_type) in [Karachi](location)
+    - where is the nearest [flood shelter](facility_type) ?
+    - where can in [Karachi](location) can i find a [flood relief camp](facility_type)?
+    - help me find a burn hospital in [Islamabad](facility_type)
+
+
+- intent: thankyou
+  examples: |
+    - great, thanks
+    - thank you
+    - thanks
+    - wow thanks
+    - great. thanks
+    - perfect. thank you
+    - thanks man!
+    - thankyou
+    - thnx
+
+
+- intent: acknowledge
+  examples: |
+    - ok
+    - Sounds great
+    - Got it
+    - Gotcha
+    - Okay, i understand
+    - Okay
+    - Alright
+    - Understood
+    - Right
+    - sounds good
+    - i get it
+    - yeah, okay
+    - yeah, i got it
+
+
+- intent: emergency_service_search
+  examples: |
+    - i need [covid-19 emergency service](emergency_service_type) number
+    - it's an emergency, i need to call the [covid-19 helpline](emergency_service_type)
+    - i need to call an [ambulance](emergency_service_type)
+    - [ambulance](emergency_service_type) number
+    - i need to contact [emergency covid-19 services](emergency_service_type)
+    - [corona emergency](emergency_service_type) number
+    - i need to call [corona emergency services](emergency_service_type)
+    - contact for [flood emergency](emergency_service_type) 
+    - [fire brigade](emergency_service_type) number
+    - [flood rescue](emergency_service_type) service number
+
+
+- intent: ask_cases
+  examples: |
+    - current [corona](disaster_type) cases?
+    - how many cases in [Punjab](location)
+    - how many [corona](disaster_type) cases in [Punjab](location)
+    - how many [infected](patient_condition_disease) people in [Sindh](location)?
+    - cases of [corona](disaster_type) in [Sindh](location)?
+    - [coronavirus](disaster_type) cases?
+    - how many people [died](patient_condition_disease) from [corona](disaster_type) in [Sindh](location)?
+    - deaths because of [corona](disaster_type)?
+    - [covid19](disaster_type) deaths in [KPK](location)?
+    - how many people [recovered](patient_condition_disease) from [corona](disaster_type) in [Punjab](location)?
+    - [recovered](patient_condition_disease) [corona](disaster_type) patients in [Sindh](location)?
+    - how many [deaths](patient_condition_disease) in [Punjab](location)
+    - percenatage of [recovered](patient_condition_disease) [covid](disaster_type) patients in [KPK](location)?
+    - percenatage of [infected](patient_condition_disease) [covid](disaster_type) patients in [KPK](location)?
+    - %tage of [deaths](patient_condition_disease) in [KPK](location)?
+    - how many deaths in the [2010 flood](disaster_type) in [Pakistan](location)?
+    - injury cases in [2010 flood](disaster_type) in [KPK](location)?
+
+
+# - intent: no_symptoms_pandemic
+#   examples: |
+#     - showing no signs of [covid-19](disaster_type) virus
+#     - asymptomatic
+#     - no visible symptoms
+#     - not sick
+#     - not ill
+#     - no symptoms
+
+
+- intent: inform_symptoms_pandemic
+  examples: |
+    - I have severe [body pain](symptom)
+    - I have a [fever](symptom)
+    - i have [covid-19](disaster_type) symptoms
+    - i think i have [covid-19](disaster_type) symptoms
+    - i have [coronavirus](disaster_type) symptoms
+    - My symptoms include [cough](symptom)
+
+
+- intent: inform_condition
+  examples: |
+    - i have [cororna](disaster_type) virus
+    - I'm currently [virus free](patient_condition_disease)
+    - in [quarantine](patient_condition_disease)
+    - [infected](patient_condition_disease)
+    - on [life support](patient_condition_disease)
+    - on [ventilator](patient_condition_disease)
+    - [recovered](patient_condition_disease) patient
+    - [recovered](patient_condition_disease) [covid-19](disaster_type) patient
+    - have [corona](disaster_type)
+    - [covid](disaster_type) patient
+    - [corona](disaster_type) victim
+    - [coronavirus](disaster_type) victim
+    - in [critical](patient_condition_disease) condition
+    - [healthy](patient_condition_disease)
+
+
+
+- intent: ask_test
+  examples: |
+    - What types of tests can i get for [corona](disaster_type)?
+    - What tests are available for [corona virus](disaster_type)?
+    - what [corona test](disaster_type) can i get
+    - which [coronavirus](disaster_type) test should i get
+
+
+
+- intent: ask_medicine
+  examples: |
+    - medicine for [covid19 virus](disaster_type) 
+    - what medicines are available to treat [coronavirus](disaster_type) ?
+    - which medicine do i use for [covid19](disaster_type) ?
+    - medical treatment for [coronavirus](disaster_type)
+    - what medicine is good for [corona](disaster_type)  patient?
+    - what can i take to treat [covid19] (disaster_type)
+
+
+- intent: ask_accuracy
+  examples: |
+    - chance of false positive of [corona](disaster_type)  [PCR](test) test?
+    - accuracy of [corona](disaster_type)  test
+    - how often is [corona](disaster_type)  test right?
+    - how often is [corona](disaster_type)  test wrong?
+    - percentage of false positive of [corona](disaster_type)  test?
+    - can [corona](disaster_type)  test be false?
+    - can [corona](disaster_type)  [pcr](test) be wrong?
+    - is corona [antigen test](test) accurate?
+    - [corona test](test) accuracy
+
+
+
+- intent: ask_prevention
+  examples: |
+    - how to prevent
+    - prevention techniques
+    - how to stop
+    - how to stay away from [coronavirus](disaster_type) 
+    - prevent fires
+    - ways to block [covid19](disaster_type) 
+    - protect myself from [covid-19](disaster_type) 
+    - prevent [corona](disaster_type)  disease
+    - what helps keep [coronavirus](disaster_type) away?
+    - how to avoid [coronavirus](disaster_type)
+    - avoid getting [coronavirus](disaster_type)
+    - how i avoid getting [corona](disaster_type)
+
+
+- intent: ask_cause
+  examples: |
+    - can you get [corona](disaster_type) from [ice-cream](cause)
+    - can i get [corona](disaster_type) from [ice-cream](cause)
+    - can getting [sneezed on](cause) give you [coronavirus](disaster_type)
+    - [ice-cream](cause) causes [coronavirus](disaster_type)
+    - i got [covid19](disaster_type) from my [dog](cause)
+    - does [rain](cause) cause [coronavirus](disaster_type)
+    - can drinking too much [pepsi](cause) lead to [covid19](disaster_type)
+    - can i get [corona](disaster_type) from a [recovered patient](cause)
+    - can i get [corona](disaster_type) by [smoking](cause)
+
+- intent: give_cause
+  examples: |
+    - [ice-cream](cause)
+    - [getting sneezed on](cause)
+
+- lookup: disaster_type
+  examples: |
+    - Fire
+    - flood
+    - earthquake
+    - flooding
+    - flash flood
+    - forest fire
+    - house fire
+    - wildfire
+    - 2010 flood
+
+
+
+
+
+
+ 
