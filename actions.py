@@ -11,6 +11,7 @@ from typing import Any, Text, Dict, List
 
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
+from rasa_sdk.events import SlotSet
 import requests
 from api_key import key, projectId
 import firebase_admin
@@ -104,9 +105,25 @@ class ActionFindCases(Action):
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-
+        distype = "None"
+        location = "None"
+        condition = "None"
         distype = tracker.get_slot("disaster_type")
         location = tracker.get_slot("location")
+        condition = tracker.get_slot("patient_condition")
+
+        if condition == "infected" or condition == "infect" or condition == "infection":
+            response = "Currently the number of "+distype+" victims in your location is "
+
+        elif condition == "died" or condition == "death" or condition == "dying" or condition == "deaths":
+            response = "Currently the number of "+distype+" victims in your location is "
+
+        elif condition == "recovered" or condition == "recoveries" or condition == "recover":
+            response = "Currently the number of "+distype+" recoveries in your location is "
+
+        elif condition == "None"
+        response = "Currently, in your location the cases of the following are:\nDeaths: Balaj pls add API\nRecovered Patients: Balaj pls add API\nInfected Patients: Balaj pls add API\nCritical Condition: Balaj pls add API"
+        dispatcher.utter_message(text=response)
 
         return []
 
@@ -119,16 +136,20 @@ class ActionCheckSymptom(Action):
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-
+        checksymp = "None"
         distype = tracker.get_slot("disaster_type")
         checksymp = tracker.get_slot("symptom")
-        getsymptomsfromdatabase = "pain"
-        if checksymp == getsymptomsfromdatabase:
+        getsymptomsfromdatabase = ["fever", "fatigue", "cough"]
+        if checksymp in getsymptomsfromdatabase:
             response = "Yes, " + checksymp + " is a symptom of " + distype + \
-                "\nOther symtoms include blah blah\nIf you have more of these symptoms, please consult a doctor to recieve a diagnosis"
-            dispatcher.utter_message(text=response)
+                "\nOther symtoms include blah blah\nIf you have more of these symptoms, please consult a doctor to recieve a certain diagnosis. \nWould you like me to find a hospital for you?"
+        elif:
+            response = "According to my database, this isn't a verified or listed symptom of " + \
+                distype + " but i recommend you consult a doctor to be certain.\nWould you like me to find a hospital for you?"
 
-        return[]
+        dispatcher.utter_message(text=response)
+        facility = "hospital"
+        return [SlotSet("facility_search", facility)]
 
 
 class ActionFindMed(Action):

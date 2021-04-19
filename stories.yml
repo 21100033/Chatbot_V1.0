@@ -3,8 +3,6 @@ stories:
 
 - story: facility search path 1
   steps:
-  - intent: greet
-  - action: utter_greet
   - intent: facility_search
     entities:
     - facility_type: "hospital"
@@ -13,8 +11,6 @@ stories:
 
 - story: facility search + location path 1
   steps:
-  - intent: greet
-  - action: utter_greet
   - intent: facility_search
     entities:
     - facility_type: "hospital"
@@ -69,7 +65,25 @@ stories:
     - disaster_type: "corona"
     - symptom: "fever"
   - action: action_checksymptom
-  - action: utter_consult_doc
+  - intent: affirm
+  - action: utter_ask_location
+  - intent: provide_location
+    entities:
+    - location: "Islamabad"
+  - action: action_find_facility
+  - action: utter_anything_else
+  - intent: deny
+  - action: utter_ack
+
+- story: symptoms check path 3
+  steps:
+  - intent: inform_symptoms_pandemic
+    entities:
+    - disaster_type: "corona"
+    - symptom: "fever"
+  - action: action_checksymptom
+  - intent: deny
+  - action: utter_ack
 
  
 - story: current cases path 1

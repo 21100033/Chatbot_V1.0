@@ -27,6 +27,8 @@ nlu:
       - of course
       - that sounds good
       - correct
+      - yes, please
+      - yes pls
 
   - intent: deny
     examples: |
