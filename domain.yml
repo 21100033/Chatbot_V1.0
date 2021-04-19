@@ -22,7 +22,6 @@ intents:
   - ask_medicine
   - ask_cases
   - inform_symptoms_pandemic
-  - no_symptoms_pandemic
   - ask_cause
   - ask_spread
   - give_cause
@@ -39,12 +38,14 @@ entities:
 slots:
   location:
     type: text
+    influence_conversation: True
   facility_type:
     type: text
   emergency_service_type:
     type: text
   disaster_type:
     type: text
+    influence_conversation: True
   test:
     type: text
   symptom:

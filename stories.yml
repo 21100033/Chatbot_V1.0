@@ -56,7 +56,7 @@ stories:
 
 - story: symptoms check path 1
   steps:
-  - intent: symptoms_pandemic
+  - intent: inform_symptoms_pandemic
     entities:
     - disaster_type: "corona"
   - action: utter_ask_symptoms
