@@ -13,10 +13,13 @@ from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import SlotSet
 import requests
-from api_key import key, projectId
+from api_key import key, projectId, algorthimia_api, algorthimia_key
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
+import nltk
+from nltk.corpus import stopwords
+nltk.download('stopwords')
 
 cred = credentials.Certificate("./serviceAccountKey.json")
 
@@ -25,7 +28,12 @@ firebase_admin.initialize_app(cred, {
 })
 
 db = firestore.client()
+corona = db.collection(u'pandemic').document(u'corona')
+corona_faqs = corona.collection(u'FAQs - Scrapper')
 
+stop_words = stopwords.words('english')
+stop_words.append('Q')
+stop_words.append('q:')
 
 class ActionFindFacility(Action):
 
@@ -254,6 +262,69 @@ class ActionAskCause(Action):
 
         distype = tracker.get_slot("disaster_type")
         response = "I'm a bit confused. Could you tell me the cause again?"
+        dispatcher.utter_message(text=response)
+
+        return[]
+
+# ML model query
+class ActionML(Action):
+    def name(self) -> Text:
+        return "action_ml"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        query = tracker.get_slot('query')  # obtain location
+            
+        client = Algorithmia.client(algorthimia_key)
+        algo = client.algo(algorthimia_api)
+        algo.set_options(timeout=300) # optional
+        res = algo.pipe(input).result
+        response = "According to our ML model your query is " + res
+        dispatcher.utter_message(text=response)
+
+        return[]
+
+
+# DB model query
+class ActionDB(Action):
+    
+    def name(self) -> Text:
+        return "action_db"
+
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        query = tracker.get_slot('query')  # obtain location
+
+        #breaking query
+        query = query.lower() 
+        new_query = query.split()
+
+        #removing stopwords
+        filtered_query = [w for w in new_query if not w in stop_words] 
+
+        # if query is more than 10 values (limit by Google Firebase)
+        if len(filtered_query) > 10:
+            for i in range (0, len(filtered_query)-10):
+                filtered_query.pop()
+
+        # quering 
+        query_result = corona_faqs.where(u'keywords', u'array_contains_any', filtered_query).stream()
+
+        # finding item whose keywords match the most 
+        ans = ""
+        max_matches = 0
+
+        for query in query_result:
+            dict_ans = query.to_dict()
+            matches = sum([1 for i in dict_ans['keywords'] if i in filtered_query])
+            if matches > max_matches:
+                max_matches = matches
+                ans = dict_ans['answer']
+
         dispatcher.utter_message(text=response)
 
         return[]
