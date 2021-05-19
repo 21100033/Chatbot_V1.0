@@ -35,6 +35,7 @@ stop_words = stopwords.words('english')
 stop_words.append('Q')
 stop_words.append('q:')
 
+
 class ActionFindFacility(Action):
 
     def name(self) -> Text:
@@ -129,8 +130,9 @@ class ActionFindCases(Action):
         elif condition == "recovered" or condition == "recoveries" or condition == "recover":
             response = "Currently the number of "+distype+" recoveries in your location is "
 
-        elif condition == "None"
-        response = "Currently, in your location the cases of the following are:\nDeaths: Balaj pls add API\nRecovered Patients: Balaj pls add API\nInfected Patients: Balaj pls add API\nCritical Condition: Balaj pls add API"
+        elif condition == "None":
+            response = "Currently, in your location the cases of the following are:\nDeaths: Balaj pls add API\nRecovered Patients: Balaj pls add API\nInfected Patients: Balaj pls add API\nCritical Condition: Balaj pls add API"
+
         dispatcher.utter_message(text=response)
 
         return []
@@ -151,7 +153,7 @@ class ActionCheckSymptom(Action):
         if checksymp in getsymptomsfromdatabase:
             response = "Yes, " + checksymp + " is a symptom of " + distype + \
                 "\nOther symtoms include blah blah\nIf you have more of these symptoms, please consult a doctor to recieve a certain diagnosis. \nWould you like me to find a hospital for you?"
-        elif:
+        else:
             response = "According to my database, this isn't a verified or listed symptom of " + \
                 distype + " but i recommend you consult a doctor to be certain.\nWould you like me to find a hospital for you?"
 
@@ -267,6 +269,8 @@ class ActionAskCause(Action):
         return[]
 
 # ML model query
+
+
 class ActionML(Action):
     def name(self) -> Text:
         return "action_ml"
@@ -276,10 +280,10 @@ class ActionML(Action):
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
         query = tracker.get_slot('query')  # obtain location
-            
+
         client = Algorithmia.client(algorthimia_key)
         algo = client.algo(algorthimia_api)
-        algo.set_options(timeout=300) # optional
+        algo.set_options(timeout=300)  # optional
         res = algo.pipe(input).result
         response = "According to our ML model your query is " + res
         dispatcher.utter_message(text=response)
@@ -289,7 +293,7 @@ class ActionML(Action):
 
 # DB model query
 class ActionDB(Action):
-    
+
     def name(self) -> Text:
         return "action_db"
 
@@ -299,28 +303,30 @@ class ActionDB(Action):
 
         query = tracker.get_slot('query')  # obtain location
 
-        #breaking query
-        query = query.lower() 
+        # breaking query
+        query = query.lower()
         new_query = query.split()
 
-        #removing stopwords
-        filtered_query = [w for w in new_query if not w in stop_words] 
+        # removing stopwords
+        filtered_query = [w for w in new_query if not w in stop_words]
 
         # if query is more than 10 values (limit by Google Firebase)
         if len(filtered_query) > 10:
-            for i in range (0, len(filtered_query)-10):
+            for i in range(0, len(filtered_query)-10):
                 filtered_query.pop()
 
-        # quering 
-        query_result = corona_faqs.where(u'keywords', u'array_contains_any', filtered_query).stream()
+        # quering
+        query_result = corona_faqs.where(
+            u'keywords', u'array_contains_any', filtered_query).stream()
 
-        # finding item whose keywords match the most 
+        # finding item whose keywords match the most
         ans = ""
         max_matches = 0
 
         for query in query_result:
             dict_ans = query.to_dict()
-            matches = sum([1 for i in dict_ans['keywords'] if i in filtered_query])
+            matches = sum(
+                [1 for i in dict_ans['keywords'] if i in filtered_query])
             if matches > max_matches:
                 max_matches = matches
                 ans = dict_ans['answer']

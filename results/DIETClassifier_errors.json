@@ -1,0 +1,173 @@
+[
+  {
+    "text": "can you tell me where the nearest covid-19 testing center is?",
+    "entities": [
+      {
+        "start": 34,
+        "end": 57,
+        "value": "covid-19 testing center",
+        "entity": "facility_type"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "disaster_type",
+        "start": 34,
+        "end": 57,
+        "confidence_entity": 0.4842946529388428,
+        "value": "covid-19 testing center",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "it's an emergency, i need to call the covid-19 helpline",
+    "entities": [
+      {
+        "start": 38,
+        "end": 55,
+        "value": "covid-19 helpline",
+        "entity": "emergency_service_type"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "emergency_service_type",
+        "start": 8,
+        "end": 17,
+        "confidence_entity": 0.3506745994091034,
+        "value": "emergency",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "emergency_service_type",
+        "start": 38,
+        "end": 55,
+        "confidence_entity": 0.7074820399284363,
+        "value": "covid-19 helpline",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "covid19 deaths in KPK?",
+    "entities": [
+      {
+        "start": 0,
+        "end": 7,
+        "value": "covid19",
+        "entity": "disaster_type"
+      },
+      {
+        "start": 18,
+        "end": 21,
+        "value": "KPK",
+        "entity": "location"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "disaster_type",
+        "start": 0,
+        "end": 7,
+        "confidence_entity": 0.9787989854812622,
+        "value": "covid19",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "patient_condition_disease",
+        "start": 8,
+        "end": 14,
+        "confidence_entity": 0.6365444660186768,
+        "value": "deaths",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "location",
+        "start": 18,
+        "end": 21,
+        "confidence_entity": 0.9992669224739075,
+        "value": "KPK",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "how many deaths in the 2010 flood in Pakistan?",
+    "entities": [
+      {
+        "start": 23,
+        "end": 33,
+        "value": "2010 flood",
+        "entity": "disaster_type"
+      },
+      {
+        "start": 37,
+        "end": 45,
+        "value": "Pakistan",
+        "entity": "location"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "patient_condition_disease",
+        "start": 9,
+        "end": 15,
+        "confidence_entity": 0.6715914011001587,
+        "value": "deaths",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "disaster_type",
+        "start": 23,
+        "end": 33,
+        "confidence_entity": 0.9327843189239502,
+        "value": "2010 flood",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "location",
+        "start": 37,
+        "end": 45,
+        "confidence_entity": 0.9992634654045105,
+        "value": "Pakistan",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "can i get corona from a recovered patient",
+    "entities": [
+      {
+        "start": 10,
+        "end": 16,
+        "value": "corona",
+        "entity": "disaster_type"
+      },
+      {
+        "start": 24,
+        "end": 41,
+        "value": "recovered patient",
+        "entity": "cause"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "disaster_type",
+        "start": 10,
+        "end": 16,
+        "confidence_entity": 0.9974121451377869,
+        "value": "corona",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "patient_condition_disease",
+        "start": 24,
+        "end": 41,
+        "confidence_entity": 0.5262678265571594,
+        "value": "recovered patient",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  }
+]

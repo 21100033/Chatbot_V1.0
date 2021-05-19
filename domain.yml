@@ -5,12 +5,12 @@ intents:
   - goodbye
   - affirm
   - deny
+  - thank
   - mood_great
   - mood_unhappy
   - bot_challenge
   - provide_location
   - facility_search
-  - thankyou
   - acknowledge
   - emergency_service_search
   - inform_condition
@@ -71,7 +71,7 @@ responses:
     - text: "Great, carry on!"
 
   utter_goodbye:
-    - text: "Bye"
+    - text: "Alright then, Bye"
 
   utter_iamabot:
     - text: "I am a bot, powered by Rasa."
@@ -82,8 +82,11 @@ responses:
   utter_ask_location:
     - text: "Could you please tell me your location?"
 
-  utter_default:
-    - text: "I do not understand, could you rephrase?"
+  utter_ask_rephrase:
+    - text: "I'm sorry, I didn't quite understand that. Could you rephrase?"
+  
+  utter_default: 
+    - text: "Unfortunately, i'm still unable to process your querry. Perhaps you could post your question on our forums page so that other users or our various moderators can provide with the best response.\nHere's a link to our forums page!\nhttps://corona-info.flywheelsites.com/home/forums/ "
 
   utter_anything_else:
     - text: "Can i help with you with anything else"
@@ -101,13 +104,16 @@ responses:
     - text: "What are your symptoms?"
 
   utter_ask_medsfor:
-    - text: "Could you tell me what you need medicines for?"
+    - text: "Could you tell me what you need medicinal information for?"
 
   utter_ask_testfor:
     - text: "What do you need to get tested for?"
 
   utter_ask_preventfor:
     - text: "What do you need prevention techniques for?"
+
+  utter_sure:
+    - text: "Sure, no problem!"
 
 actions:
   - action_find_facility
@@ -123,6 +129,8 @@ actions:
   - utter_default
   - utter_anything_else
   - utter_ack
+  - utter_sure
+  - utter_goodbye
   - utter_consult_doc
   - utter_ask_symptoms
   - utter_ask_casesfor

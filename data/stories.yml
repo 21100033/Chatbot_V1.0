@@ -1,20 +1,19 @@
+version: "2.0"
 
 stories:
 
 - story: facility search path 1
   steps:
-  - intent: greet
-  - action: utter_greet
   - intent: facility_search
     entities:
     - facility_type: "hospital"
     - location : "Islamabad"
+  - action: utter_sure
   - action: action_find_facility
+
 
 - story: facility search + location path 1
   steps:
-  - intent: greet
-  - action: utter_greet
   - intent: facility_search
     entities:
     - facility_type: "hospital"
@@ -27,6 +26,7 @@ stories:
 - story: emergency services
   steps:
   - intent: emergency_service_search
+  - action: utter_sure
   - action: action_find_service
 
 - story: goodbye path 1
@@ -34,17 +34,13 @@ stories:
   - intent: acknowledge 
   - action: utter_anything_else
   - intent: deny
-  - action: utter_ack
   - action: utter_goodbye
 
 
 - story: goodbye path 2
   steps:
-  - intent: thankyou
-  - action: utter_welcome_response
   - action: utter_anything_else
   - intent: deny
-  - action: utter_ack
   - action: utter_goodbye
 
 
@@ -53,10 +49,17 @@ stories:
   - intent: goodbye
   - action: utter_goodbye
 
+- story: goodbye path 4
+  steps:
+  - intent: acknowledge
+  - action: utter_anything_else
+  - intent: deny
+  - action: utter_goodbye
+
 
 - story: symptoms check path 1
   steps:
-  - intent: symptoms_pandemic
+  - intent: inform_symptoms_pandemic
     entities:
     - disaster_type: "corona"
   - action: utter_ask_symptoms
@@ -69,7 +72,27 @@ stories:
     - disaster_type: "corona"
     - symptom: "fever"
   - action: action_checksymptom
-  - action: utter_consult_doc
+  - intent: affirm
+  - action: utter_ask_location
+  - intent: provide_location
+    entities:
+    - location: "Islamabad"
+  - action: action_find_facility
+  - action: utter_anything_else
+  - intent: deny
+  - action: utter_goodbye
+
+- story: symptoms check path 3
+  steps:
+  - intent: inform_symptoms_pandemic
+    entities:
+    - disaster_type: "corona"
+    - symptom: "fever"
+  - action: action_checksymptom
+  - intent: deny
+  - action: utter_anything_else
+  - intent: deny
+  - action: utter_goodbye
 
  
 - story: current cases path 1
@@ -94,6 +117,7 @@ stories:
     entities:
     - disaster_type: "corona"
   - action: action_findcases
+  - action: utter_anything_else
 
  
 - story: current cases+location path 2
@@ -102,8 +126,21 @@ stories:
     entities:
     - disaster_type: "corona"
     - location: "Islamabad"
-  - action: utter_ask_location
+  - action: utter_sure
   - action: action_findcases
+  - action: utter_anything_else
+
+- story: current cases+location path 3
+  steps:
+  - intent: ask_cases
+    entities:
+    - disaster_type: "corona"
+  - action: utter_ask_location
+  - intent: provide_location
+    entities:
+    - location: "Islamabad"
+  - action: action_findcases
+  - action: utter_anything_else
  
  
 - story: ask medicine path 1
@@ -111,8 +148,10 @@ stories:
   - intent: ask_medicine
     entities:
     - disaster_type: "corona"
-  - action: utter_ask_location
+  - action: utter_sure
   - action: action_findmeds
+  - action: utter_anything_else
+
 
  
 - story: ask medicine path 2
@@ -124,6 +163,8 @@ stories:
     - disaster_type: "corona"
   - action: utter_ask_location
   - action: action_findmeds
+  - action: utter_anything_else
+
 
  
 - story: what test path 1
@@ -132,6 +173,8 @@ stories:
     entities:
     - disaster_type: "corona"
   - action: action_findtests
+  - action: utter_anything_else
+
  
  
 - story: what test path 2
@@ -142,6 +185,8 @@ stories:
     entities:
     - disaster_type: "corona"
   - action: action_findtests
+  - action: utter_anything_else
+
 
  
 - story: how accurate path 1
@@ -151,6 +196,8 @@ stories:
     - disaster_type: "corona"
     - test: "PCR"
   - action: action_getacc
+  - action: utter_anything_else
+
 
  
 - story: how accurate path 2
@@ -159,6 +206,7 @@ stories:
     entities:
     - disaster_type: "corona"
   - action: action_getacc
+  - action: utter_anything_else
 
  
 - story: how to prevent path 1
@@ -167,6 +215,8 @@ stories:
     entities:
     - disaster_type: "corona"
   - action: action_prevent
+  - action: utter_anything_else
+
 
 - story: how to prevent path 2
   steps:
@@ -176,6 +226,8 @@ stories:
     entities:
     - disaster_type: "corona"
   - action: action_prevent
+  - action: utter_anything_else
+
  
 - story: can cause path 1
   steps:
@@ -184,6 +236,8 @@ stories:
     - disaster_type: "corona"
     - cause: "ice-cream"
   - action: action_confirm_cause
+  - action: utter_anything_else
+
 
 - story: can cause path 2
   steps:
@@ -195,6 +249,37 @@ stories:
     entities:
     - cause: "ice-cream"
   - action: action_confirm_cause
+  - action: utter_anything_else
+
+rules:
+
+- rule: Say `hello` when the user starts a conversation with intent `greet`
+  conversation_start: true
+  steps:
+  - intent: greet
+  - action: utter_greet
+
+- rule: Say `bye` when the user starts with intent `goodbye`
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
+
+- rule: Say `welcome` when the user starts with intent `thank`
+  steps:
+  - intent: thank
+  - action: utter_welcome_response
+
+- rule: Say 'bye' after user no longer wants help
+  steps:
+  - action: utter_anything_else
+  - intent: deny
+  - action: utter_goodbye
+
+- rule: Implementation of the Two-Stage-Fallback
+  steps:
+  - intent: nlu_fallback
+  - action: action_two_stage_fallback
+  - active_loop: action_two_stage_fallback
     
 
 

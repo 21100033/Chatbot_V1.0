@@ -1,26 +1,80 @@
 {
+  "disaster_type": {
+    "precision": 0.961038961038961,
+    "recall": 1.0,
+    "f1-score": 0.9801324503311257,
+    "support": 74,
+    "confused_with": {}
+  },
+  "emergency_service_type": {
+    "precision": 0.9545454545454546,
+    "recall": 1.0,
+    "f1-score": 0.9767441860465117,
+    "support": 21,
+    "confused_with": {}
+  },
+  "test": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 6,
+    "confused_with": {}
+  },
   "location": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 5
+    "support": 35,
+    "confused_with": {}
+  },
+  "patient_condition_disease": {
+    "precision": 0.8260869565217391,
+    "recall": 1.0,
+    "f1-score": 0.9047619047619047,
+    "support": 19,
+    "confused_with": {}
+  },
+  "cause": {
+    "precision": 1.0,
+    "recall": 0.9047619047619048,
+    "f1-score": 0.9500000000000001,
+    "support": 21,
+    "confused_with": {
+      "patient_condition_disease": 2
+    }
+  },
+  "symptom": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 4,
+    "confused_with": {}
+  },
+  "facility_type": {
+    "precision": 1.0,
+    "recall": 0.85,
+    "f1-score": 0.9189189189189189,
+    "support": 20,
+    "confused_with": {
+      "disaster_type": 3
+    }
   },
   "micro avg": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 5
+    "precision": 0.9605911330049262,
+    "recall": 0.975,
+    "f1-score": 0.9677419354838709,
+    "support": 200
   },
   "macro avg": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 5
+    "precision": 0.9677089215132694,
+    "recall": 0.9693452380952381,
+    "f1-score": 0.9663196825073077,
+    "support": 200
   },
   "weighted avg": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 5
+    "precision": 0.9642899491812537,
+    "recall": 0.975,
+    "f1-score": 0.967801419001673,
+    "support": 200
   }
 }

@@ -12,12 +12,32 @@ nlu:
       - yo
       - sup
 
+  - intent: thank
+    examples: |
+      - thank you
+      - thanks
+      - thanku
+      - thankyou
+      - thank you very much
+      - thnx
+      - thank
+      - great, thanks
+      - wow thanks
+      - great. thanks
+      - perfect. thank you
+      - thanks man!
+      - thnku
+
+
   - intent: goodbye
     examples: |
       - bye
       - goodbye
       - see you around
       - see you later
+      - bye bye
+      - bai
+      - gudbye
 
   - intent: affirm
     examples: |
@@ -45,6 +65,7 @@ nlu:
       - nah
       - no, i'm done
       - no. i'm done
+      - no thanks
 
   - intent: mood_great
     examples: |
@@ -115,20 +136,9 @@ nlu:
       - [hospital](facility_type) in [Rawalpindi](location)
       - i need to locate a [burn center](facility_type) in [Karachi](location)
       - where is the nearest [flood shelter](facility_type) ?
+      - where is the nearest [hospital](facility_type)
       - where can in [Karachi](location) can i find a [flood relief camp](facility_type)?
-      - help me find a burn hospital in [Islamabad](facility_type)
-
-  - intent: thankyou
-    examples: |
-      - great, thanks
-      - thank you
-      - thanks
-      - wow thanks
-      - great. thanks
-      - perfect. thank you
-      - thanks man!
-      - thankyou
-      - thnx
+      - help me find a [hospital](facility_type) in [Islamabad](location)
 
   - intent: acknowledge
     examples: |
@@ -218,7 +228,7 @@ nlu:
     examples: |
       - What types of tests can i get for [corona](disaster_type)?
       - What tests are available for [corona virus](disaster_type)?
-      - what [corona test](disaster_type) can i get
+      - what [corona] (disaster_type) test can i get
       - which [coronavirus](disaster_type) test should i get
 
   - intent: ask_medicine
@@ -239,7 +249,7 @@ nlu:
       - percentage of false positive of [corona](disaster_type)  test?
       - can [corona](disaster_type)  test be false?
       - can [corona](disaster_type)  [pcr](test) be wrong?
-      - is corona [antigen test](test) accurate?
+      - is [corona](disaster_type) [antigen test](test) accurate?
       - [corona test](test) accuracy
 
   - intent: ask_prevention
@@ -260,14 +270,22 @@ nlu:
   - intent: ask_cause
     examples: |
       - can you get [corona](disaster_type) from [ice-cream](cause)
+      - can you get [corona](disaster_type) from [smoking](cause)
       - can i get [corona](disaster_type) from [ice-cream](cause)
       - can getting [sneezed on](cause) give you [coronavirus](disaster_type)
+      - can getting [smoking](cause) give you [coronavirus](disaster_type)
       - [ice-cream](cause) causes [coronavirus](disaster_type)
+      - [smoking](cause) cause [covid19](disaster_type)?
       - i got [covid19](disaster_type) from my [dog](cause)
+      - can [dogs](cause) cause [covid19](disaster_type)
       - does [rain](cause) cause [coronavirus](disaster_type)
       - can drinking too much [pepsi](cause) lead to [covid19](disaster_type)
+      - can [smoking](cause) lead to [covid19](disaster_type) virus?
       - can i get [corona](disaster_type) from a [recovered patient](cause)
       - can i get [corona](disaster_type) by [smoking](cause)
+      - can i get [corona](disaster_type) by [ice-cream](cause)
+
+
 
   - intent: give_cause
     examples: |

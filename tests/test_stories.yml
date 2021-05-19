@@ -1,0 +1,39 @@
+stories:
+
+- story: A basic story test
+  steps:
+  - user: |
+      hello
+    intent: greet
+  - action: utter_greet
+  - user: |
+     can you find me a [hospital](facility_type) in [Karachi](location)?
+    intent: facility_search
+  - action: utter_sure
+  - action: action_find_facility
+
+- story: goodbye path test
+  steps:
+  - user: |
+     Got it
+    intent: acknowledge 
+  - action: utter_anything_else
+  - user: |
+     No, i'm done
+    intent: deny
+  - action: utter_goodbye
+
+- story: a little more complex
+  steps:
+  - user: |
+      hello
+    intent: greet
+  - action: utter_greet
+  - user: |
+     can you find me a [hospital](facility_type)?
+    intent: facility_search
+  - action: utter_ask_location
+  - user: |
+     Islamabad
+    intent: provide_location 
+  - action: action_find_facility
